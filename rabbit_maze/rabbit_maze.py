@@ -45,7 +45,7 @@ def options_in_maze_with_memo(n, m, memo={(1, 1): 1}):
         new_position = (n + direction[0], m + direction[1])
         if new_position[0] >= 1 and new_position[1] >= 1:
             # if it is a valid state
-            answer += options_in_maze(new_position)
+            answer += options_in_maze_with_memo(new_position[0], new_position[1], memo)
     memo[(n, m)] = answer
     return memo[(n, m)]
 
@@ -68,19 +68,24 @@ def maze_iterative(m, n):
 
 
 if __name__ == "__main__":
-    print("RECURSIVE:")
+    print("\nRECURSIVE:")
     print(options_in_maze((3, 2)))
     print(options_in_maze((3, 3)))
     print(options_in_maze((6, 6)))
+    # print(options_in_maze((30, 30)))
 
-    print("RECURSIVE MEMO:")
+    print("\nRECURSIVE MEMO:")
+
     print(options_in_maze_with_memo(3, 2))
     print(options_in_maze_with_memo(3, 3))
     print(options_in_maze_with_memo(6, 6))
+    print(options_in_maze_with_memo(30, 30))
+    print(options_in_maze_with_memo(18, 6))
+    print(options_in_maze_with_memo(6, 9))
 
-    print("ITERATIVE:")
+    print("\nITERATIVE:")
     print(maze_iterative(3, 2))
     print(maze_iterative(3, 3))
     print(maze_iterative(6, 6))
-
-    # print(options_in_maze((6, 9)))
+    print(maze_iterative(30, 30))
+    print(maze_iterative(18, 6))
